@@ -1,0 +1,56 @@
+team_name: "ayush-redrob-ranker"
+
+primary_contact:
+  name: "Ayush"
+  email: "ayush@example.com"
+  phone: "+91-XXXXXXXXXX"
+
+team_members:
+  - name: "Ayush"
+    role: "Team Lead / ML Engineer"
+
+github_repo: "https://github.com/ayush2459/redrob-ranker"
+sandbox_link: "https://huggingface.co/spaces/ayush2459/redrob-ranker"
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./team_ayush.csv"
+
+compute:
+  platform: "Linux CPU"
+  cpu_cores: 4
+  ram_gb: 8
+  python_version: "3.11"
+  os: "Ubuntu 22.04"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "Claude"
+
+ai_usage_summary: |
+  Used Claude for architectural discussion and code review.
+  All candidate scoring logic, JD analysis, and ranking decisions
+  were designed and implemented by the team. No candidate data
+  was fed to any hosted LLM during ranking.
+
+methodology_summary: |
+  Hybrid feature-engineered ranker with five scoring components:
+  (1) Skill match using a JD-derived weighted taxonomy (tier-1: embeddings,
+  retrieval, RAG, fine-tuning; tier-2: vector DBs, Hugging Face, PyTorch;
+  tier-3: general engineering), with proficiency and endorsement multipliers
+  to guard against keyword stuffing. (2) Career fit scoring title alignment
+  and production deployment evidence from career descriptions. (3) Experience
+  year alignment to the 5-9yr sweet spot. (4) Location/relocation scoring.
+  (5) Redrob assessment scores. Engagement (availability, response rate,
+  interview completion, GitHub) applied as a multiplicative modifier [0.2, 1.1x]
+  rather than additive — ensures inactive candidates don't displace reachable ones.
+  Honeypot guard removes keyword stuffers and impossible profiles.
+  Runtime: ~30s for 100K candidates. Zero external dependencies beyond numpy/pandas.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
